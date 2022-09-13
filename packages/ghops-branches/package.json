@@ -1,5 +1,5 @@
 {
-  "name": "@my-devops-playground/branches",
+  "name": "@my-devops-playground/ghops-branches",
   "version": "1.0.0",
   "private": false,
   "type": "module",
