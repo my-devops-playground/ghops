@@ -8,6 +8,10 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/my-devops-playground/ghops.git"
+  },
   "license": "ISC",
   "devDependencies": {
     "prettier": "2.7.1"
