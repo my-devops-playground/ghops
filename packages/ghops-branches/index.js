@@ -62,5 +62,3 @@ class BranchProtectionOp {
     }
   }
 }
-
-new BranchProtectionOp(core).execute();
