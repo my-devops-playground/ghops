@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node: 16.17
-          registry-uri: https://npm.pkg.github.com/@my-devops-playground
+          registry-uri: https://npm.pkg.github.com
       - run: npm install
       - run: npm publish
         env:
