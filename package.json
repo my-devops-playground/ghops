@@ -6,7 +6,7 @@
   "author": "secuoyas.com",
   "workspaces": ["packages/*"],
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/@my-dev-playground"
+    "registry": "https://npm.pkg.github.com/@my-devops-playground"
   },
   "license": "ISC",
   "devDependencies": {
