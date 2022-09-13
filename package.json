@@ -1,0 +1,15 @@
+{
+  "name": "ghops",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Github Devops Tasks",
+  "author": "secuoyas.com",
+  "workspaces": ["packages/*"],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@my-dev-playground"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "2.7.1"
+  }
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "name": "my-devops-playground/static-site",
+    "branch-protection": {
+      "branch": "master",
+      "pull-requests": {
+        "review-count": 2,
+        "review-codeowners": true
+      }
+    }
+  }
+]

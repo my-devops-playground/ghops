@@ -1,0 +1,11 @@
+{
+  "name": "@ghops/core",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "index.js",
+  "dependencies": {
+    "octokit": "^2.0.7",
+    "pino": "^8.5.0"
+  }
+}
