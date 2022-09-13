@@ -15,7 +15,7 @@ jobs:
           node-version: 16.17
           registry-url: https://npm.pkg.github.com/
           scope: '@my-devops-playground'
-      - run: npm install
-      - run: npm publish
+      - run: yarn install
+      - run: yarn publish:all
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
