@@ -4,10 +4,10 @@ import { OPERATIONS as MembershipOps } from "@my-devops-playground/ghops-members
 
 class GhopsAction extends Op {
   execute() {
-    const operations = [...MembershipOps,...BranchesOps];
+    const operations = [...MembershipOps, ...BranchesOps];
 
     operations
       .map((OperationClass) => new OperationClass())
-      .array.forEach(operations.execute);
+      .array.forEach((op) => op.execute());
   }
 }

@@ -1,4 +1,4 @@
-import { AddRepositoryToTeamOp } from "./add-repository-to-team";
+import AddRepositoryToTeamOp from "./add-repository-to-team.js";
 
 const OPERATIONS = [AddRepositoryToTeamOp];
 

@@ -1,11 +1,9 @@
-import { http, logger, config } from "@my-devops-playground/ghops-core";
+import { Op } from "@my-devops-playground/ghops-core";
 
-class AddRepositoryToTeamOp extends Op {
+export default class AddRepositoryToTeamOp extends Op {
   constructor() {}
 
   execute() {
     //TODO
   }
 }
-
-export { AddRepositoryToTeamOp };

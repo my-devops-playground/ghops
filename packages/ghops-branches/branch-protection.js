@@ -1,4 +1,4 @@
-import { http, config, logger } from "@my-devops-playground/ghops-core";
+import { http, config, logger, Op } from "@my-devops-playground/ghops-core";
 
 /**
  * Used to update branch protection.
@@ -7,7 +7,7 @@ import { http, config, logger } from "@my-devops-playground/ghops-core";
  * https://docs.github.com/en/rest/branches/branch-protection#update-branch-protection
  *
  */
-class BranchProtectionOp extends Op {
+export default class BranchProtectionOp extends Op {
   constructor() {
     this.logger = logger.child({ action: "branch-protection" });
   }
@@ -53,10 +53,9 @@ class BranchProtectionOp extends Op {
 
     const response = await this.updateBranchProtection({ owner, repo, branch });
 
-    if (response.status == "200") {
-      this.logger.info({ step: "success", path: fullPath });
-    } else {
-      this.logger.error({ step: "error", path: fullPath });
-    }
+    this.logger.info({
+      step: response.status == "200" ? "success" : "error",
+      path: fullPath,
+    });
   }
 }

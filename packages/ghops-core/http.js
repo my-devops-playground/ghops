@@ -1,5 +1,5 @@
-import { Octokit, App } from "octokit";
+import { Octokit } from "octokit";
 
-const http = new Octokit({ auth: GITHUB_TOKEN || process.env.GITHUB_TOKEN });
+const http = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
 export { http };

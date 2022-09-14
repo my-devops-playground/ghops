@@ -1,4 +1,4 @@
-import { BranchProtectionOp } from "./branch-protection";
+import BranchProtectionOp from "./branch-protection.js";
 
 const OPERATIONS = [BranchProtectionOp];
 
