@@ -4,7 +4,9 @@
   "version": "1.0.0",
   "description": "Github Devops Tasks",
   "author": "mario",
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@my-devops-playground"
   },
