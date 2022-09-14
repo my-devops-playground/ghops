@@ -1,0 +1,24 @@
+{
+  "version": "1.0.0",
+  "organizations": {
+    "name": "my-devops-playground",
+    "teams": [
+      {
+        "name": "admins",
+        "members": ["@mariogarcia"]
+      }
+    ]
+  },
+  "repositories": [
+    {
+      "name": "my-devops-playground/static-site",
+      "branch-protection": {
+        "branch": "master",
+        "pull-requests": {
+          "review-count": 2,
+          "review-codeowners": true
+        }
+      }
+    }
+  ]
+}

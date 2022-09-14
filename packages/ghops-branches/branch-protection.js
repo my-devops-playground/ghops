@@ -38,7 +38,7 @@ export default class BranchProtectionOp extends Op {
   async execute() {
     this.logger.info({ step: "start" });
     Promise.all(
-      config.map(
+      config.repositories.map(
         async (repository) => await this.#processRepository(repository)
       )
     ).then(() => this.logger.info({ step: "finish" }));
