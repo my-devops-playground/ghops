@@ -9,6 +9,7 @@ import { http, config, logger, Op } from "@my-devops-playground/ghops-core";
  */
 export default class BranchProtectionOp extends Op {
   constructor() {
+    super();
     this.logger = logger.child({ action: "branch-protection" });
   }
 
