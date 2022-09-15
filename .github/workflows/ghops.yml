@@ -1,0 +1,13 @@
+name: ghops
+
+on: [workflow_dispatch]
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: my-devops-playground/ghops-action@v1.0.0
+        with:
+          ghops-token: ${{ secrets.GITHUB_TOKEN }}
+          ghops-config: "ghops.json"
