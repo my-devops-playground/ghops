@@ -3,14 +3,13 @@ import { http, config, logger, Op } from "@my-devops-playground/ghops-core";
 /**
  * Used to update branch protection.
  *
- * REST reference at
- * https://docs.github.com/en/rest/branches/branch-protection#update-branch-protection
+ * @see https://docs.github.com/en/rest/branches/branch-protection#update-branch-protection
  *
  */
 export default class BranchProtectionOp extends Op {
   constructor() {
     super();
-    this.logger = logger.child({ action: "branch-protection" });
+    this.logger = logger.group({ action: "branch-protection" });
   }
 
   async updateBranchProtection(ownerRepoBranchConfig) {
