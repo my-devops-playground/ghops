@@ -6,7 +6,7 @@ on:
       - "main"
 
 jobs:
-  publish-ghp:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,7 +15,8 @@ jobs:
           node-version: 16.17
           registry-url: https://npm.pkg.github.com/
           scope: "@my-devops-playground"
-#      - run: npm install
-#      - run: npm publish -ws
-#        env:
-#          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+      - run: npx lint-staged
+      - run: npm install
+      - run: npm publish -ws
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}

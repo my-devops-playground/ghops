@@ -4,7 +4,7 @@
     {
       "name": "my-devops-playground/admins",
       "members": ["@mariogarcia"],
-      "repositories": [{ "name": "static-site", "permission": "admin" }]
+      "repositories": [{ "name": "ghops", "permission": "admin" }]
     }
   ],
   "repositories": [
@@ -13,7 +13,7 @@
       "branch-protection": {
         "branch": "master",
         "pull-requests": {
-          "review-count": 2,
+          "review-count": 1,
           "review-codeowners": true
         }
       }
