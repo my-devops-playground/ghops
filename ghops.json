@@ -4,10 +4,7 @@
     {
       "name": "my-devops-playground/admins",
       "members": ["@mariogarcia"],
-      "repositories": [
-        { "name": "static-site", "permissions": "admin" },
-        { "name": "ghops", "permissions": "admin" }
-      ]
+      "repositories": [{ "name": "static-site", "permission": "admin" }]
     }
   ],
   "repositories": [

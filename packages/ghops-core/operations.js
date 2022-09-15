@@ -1,8 +1,14 @@
+import { logger as coreLogger } from "./logger.js";
+
 /**
  * Represents an operation. And operation has a plan and
  * the operation can eventually execute that plan
  */
 class Op {
+  constructor(action) {
+    this.logger = coreLogger.group({ action: action });
+  }
+
   /**
    * This method should be executed to know which actions
    * will be finally executed. Some actions could have
@@ -13,7 +19,7 @@ class Op {
    * see what would have been the outcome in case it may
    * have been run
    */
-  plan() {
+  async plan() {
     throw new Error("operation not supported!");
   }
 
@@ -21,7 +27,7 @@ class Op {
    * This method applies all changes included in the operation
    * plan
    */
-  execute() {
+  async execute() {
     throw new Error("operation not supported!");
   }
 }

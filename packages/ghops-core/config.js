@@ -7,7 +7,7 @@ const DEFAULT_CONFIG_PATH = "config.json";
 function parseConfig() {
   let configuration = {};
   let configPath = process.env.CONFIG_PATH || DEFAULT_CONFIG_PATH;
-  let actionLogger = logger.child({ action: "parse-config" });
+  let actionLogger = logger.group({ action: "parse-config" });
 
   try {
     actionLogger.debug({ step: "reading-file" });
@@ -15,7 +15,7 @@ function parseConfig() {
       file.readFileSync(configPath, { encoding: ENCODING })
     );
   } catch (err) {
-    actionLogger.error({ step: "error", cause: err.message });
+    //actionLogger.error({ step: "error", cause: err ? err.message : "unknown" });
   }
 
   return configuration;
