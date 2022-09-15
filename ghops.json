@@ -1,14 +1,12 @@
 {
   "version": "1.0.0",
-  "organizations": {
-    "name": "my-devops-playground",
-    "teams": [
-      {
-        "name": "admins",
-        "members": ["@mariogarcia"]
-      }
-    ]
-  },
+  "teams": [
+    {
+      "name": "my-devops-playground/admins",
+      "members": ["@mariogarcia"],
+      "repositories": [{ "name": "static-site", "permission": "admin" }]
+    }
+  ],
   "repositories": [
     {
       "name": "my-devops-playground/static-site",

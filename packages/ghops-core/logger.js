@@ -6,7 +6,7 @@ class Logger {
   }
 
   group(payload) {
-    this.logger.child(payload);
+    return this.logger.child(payload);
   }
 
   info(payload) {
