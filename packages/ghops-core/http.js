@@ -1,5 +1,5 @@
 import { Octokit } from "octokit";
 
-const http = new Octokit({ auth: process.env.GITHUB_TOKEN });
+const http = new Octokit({ auth: process.env.GHOPS_TOKEN });
 
 export { http };
