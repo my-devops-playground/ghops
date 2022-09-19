@@ -1,4 +1,4 @@
-import { http, config, Op } from "@my-devops-playground/ghops-core";
+import { Op } from "@my-devops-playground/ghops-core";
 
 /**
  * Used to update branch protection.
@@ -6,15 +6,15 @@ import { http, config, Op } from "@my-devops-playground/ghops-core";
  * @see https://docs.github.com/en/rest/branches/branch-protection#update-branch-protection
  */
 export default class BranchProtectionOp extends Op {
-  constructor() {
-    super("branch-protection");
+  constructor(connection) {
+    super(connection, "branch-protection");
   }
 
   async execute() {
     this.logger.info({ step: "start" });
 
     await Promise.all(
-      config.repositories.map(
+      this.config.repositories.map(
         async (repository) => await this.#processRepository(repository)
       )
     );
@@ -50,7 +50,7 @@ export default class BranchProtectionOp extends Op {
       path: [owner, repo, branch].join("/"),
     });
 
-    return http.rest.repos.updateBranchProtection({
+    return this.http.rest.repos.updateBranchProtection({
       ...ownerRepoBranchConfig,
       enforce_admins: true,
       required_status_checks: null,

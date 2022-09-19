@@ -6,10 +6,10 @@ jobs:
   apply:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: my-devops-playground/ghops-action@v1.0.3
+      - uses: actions/setup-node@v2
         with:
-          ghops-token: ${{ secrets.GH_TOKEN }}
-          ghops-config: "ghops.json"
-        env:
-          GHOPS_TOKEN: ${{ secrets.GH_TOKEN }}
+          node-version: 16.17
+          registry-url: https://npm.pkg.github.com/
+          scope: "@my-devops-playground"
+      - run: "npm i -g @my-devops-playground/ghops-action"
+      - run: "ghops --token ${{ secrets.GH_TOKEN }} --config ghops.json"
