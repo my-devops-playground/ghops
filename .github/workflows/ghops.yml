@@ -11,7 +11,6 @@ jobs:
           node-version: 16.17
           registry-url: https://npm.pkg.github.com/
           scope: "@my-devops-playground"
-      - run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}" > ~/.npmrc
-      - run: echo "@my-devops-playground:registry=https://npm.pkg.github.com" >> ~/.npmrc
+      - run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > ~/.npmrc
       - run: "npm i -g @my-devops-playground/ghops-action"
       - run: "ghops --token ${{ secrets.GH_TOKEN }} --config ghops.json"
