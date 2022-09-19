@@ -1,7 +1,7 @@
 {
   "name": "@my-devops-playground/ghops",
   "private": false,
-  "version": "1.0.6",
+  "version": "1.0.4",
   "description": "Github Devops Tasks",
   "author": "mario",
   "workspaces": [
