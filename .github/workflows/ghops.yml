@@ -15,6 +15,6 @@ jobs:
         env:
           NPM_CONFIG_PREFIX: "~/.npm-global"
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
-      - run: "ghops --help"
+      - run: "~/.npm-global/.bin/ghops --help"
         env:
           NPM_CONFIG_PREFIX: "~/.npm-global"
