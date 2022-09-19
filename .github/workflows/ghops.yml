@@ -14,4 +14,4 @@ jobs:
       - run: "npm i @my-devops-playground/ghops-action@1.0.4"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
-      - run: "./node_modules/.bin/ghops --help"
+      - run: "./node_modules/.bin/ghops --token ${{ secrets.GH_TOKEN }} --config ghops.json"
