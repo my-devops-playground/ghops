@@ -13,5 +13,8 @@
   },
   "bin": {
     "ghops": "./index.js"
+  },
+  "scripts": {
+    "version": "node ./_version.js"
   }
 }
