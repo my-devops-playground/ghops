@@ -9,9 +9,9 @@
   ],
   "repositories": [
     {
-      "name": "my-devops-playground/static-site",
+      "name": "my-devops-playground/ghops",
       "branch-protection": {
-        "branch": "master",
+        "branch": "main",
         "pull-requests": {
           "review-count": 1,
           "review-codeowners": true
