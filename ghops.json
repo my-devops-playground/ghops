@@ -10,13 +10,15 @@
   "repositories": [
     {
       "name": "my-devops-playground/ghops",
-      "branch-protection": {
-        "branch": "main",
-        "pull-requests": {
-          "review-count": 1,
-          "review-codeowners": true
+      "branches": [
+        {
+          "name": "main",
+          "pull_requests": {
+            "review_count": 1,
+            "review_codeowners": true
+          }
         }
-      }
+      ]
     }
   ]
 }

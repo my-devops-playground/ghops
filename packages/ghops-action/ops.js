@@ -1,4 +1,4 @@
-import { Op } from "@my-devops-playground/ghops-core";
+import { Op, reduceAsyncSeq } from "@my-devops-playground/ghops-core";
 import { OPERATIONS as BranchesOps } from "@my-devops-playground/ghops-branches";
 import { OPERATIONS as MembershipOps } from "@my-devops-playground/ghops-memberships";
 
@@ -10,8 +10,9 @@ export default class GhopsAction extends Op {
   }
 
   execute() {
-    OPERATIONS.map(
-      (OperationClass) => new OperationClass(this.connection)
-    ).forEach((op) => op.execute());
+    reduceAsyncSeq(
+      OPERATIONS,
+      async (OpClass) => await new OpClass(this.connection).execute()
+    );
   }
 }

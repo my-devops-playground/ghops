@@ -1,4 +1,4 @@
-import { Op } from "@my-devops-playground/ghops-core";
+import { Op, reduceAsyncSeq } from "@my-devops-playground/ghops-core";
 
 /**
  * Used to update branch protection.
@@ -7,60 +7,61 @@ import { Op } from "@my-devops-playground/ghops-core";
  */
 export default class BranchProtectionOp extends Op {
   constructor(connection) {
-    super(connection, "branch-protection");
+    super(connection, "branches/protection");
   }
 
   async execute() {
-    this.logger.info({ step: "start" });
-
-    await Promise.all(
-      this.config.repositories.map(
-        async (repository) => await this.#processRepository(repository)
-      )
-    );
-
-    this.logger.info({ step: "finish" });
+    return reduceAsyncSeq(
+      this.config.repositories,
+      async (repository) => await this.#processRepository(repository)
+    ).then(() => this.logger.info({ step: "finish" }));
   }
 
   async #processRepository(repository) {
-    this.logger.info({ step: "info", path: repository.name });
-
+    this.logger.info({ step: "repo", path: repository.name });
     const [owner, repo] = repository.name.split("/");
-    const branchProtection = repository["branch-protection"];
-    const branch = branchProtection.branch;
-    const fullPath = [owner, repo, branch].join("/");
 
-    const response = await this.#updateBranchProtection({
-      owner,
-      repo,
-      branch,
-    });
-
-    this.logger.info({
-      step: response.status == "200" ? "success" : "error",
-      path: fullPath,
-    });
+    return await reduceAsyncSeq(
+      repository.branches,
+      async (branch) =>
+        await this.#updateBranchProtection({
+          owner,
+          repo,
+          branch,
+        })
+    );
   }
 
-  async #updateBranchProtection(ownerRepoBranchConfig) {
-    const { owner, repo, branch } = ownerRepoBranchConfig;
+  async #updateBranchProtection(branchInfo) {
+    const { owner, repo, branch } = branchInfo;
+    const { name, pull_requests } = branch;
+    const branchPath = [owner, repo, name].join("/");
 
-    this.logger.info({
-      step: "updating",
-      path: [owner, repo, branch].join("/"),
-    });
-
-    return this.http.rest.repos.updateBranchProtection({
-      ...ownerRepoBranchConfig,
+    const response = await this.http.rest.repos.updateBranchProtection({
+      owner,
+      repo,
+      branch: name,
       enforce_admins: true,
       required_status_checks: null,
       dismissal_restrictions: null,
       restrictions: null,
-      required_pull_request_reviews: {
-        dismiss_stale_reviews: true,
-        require_code_owner_reviews: true,
-        required_approving_review_count: 2,
-      },
+      required_pull_request_reviews: this.#getPullRequestInfo(pull_requests),
     });
+
+    this.logger.info({
+      step: "branch",
+      result: response.status == "200" ? "success" : "error",
+      path: branchPath,
+    });
+
+    return response;
+  }
+
+  #getPullRequestInfo(pull_requests) {
+    return {
+      dismiss_stale_reviews: true,
+      require_code_owner_reviews: pull_requests.review_codeowners,
+      required_approving_review_count: pull_requests.review_count,
+    };
   }
 }

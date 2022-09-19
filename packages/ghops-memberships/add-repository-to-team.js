@@ -1,4 +1,4 @@
-import { Op } from "@my-devops-playground/ghops-core";
+import { Op, reduceAsyncSeq } from "@my-devops-playground/ghops-core";
 
 /**
  * Operation that adds a repository to a team
@@ -7,36 +7,36 @@ import { Op } from "@my-devops-playground/ghops-core";
  */
 export default class AddRepositoryToTeamOp extends Op {
   constructor(connection) {
-    super(connection, "memberships/add-repository-to-team");
+    super(connection, "memberships/team/repository/add");
   }
 
   async execute() {
-    this.logger.info({ step: "start" });
-
-    await Promise.all(
-      this.config.teams.map(async (team) => await this.#processTeam(team))
-    );
-
-    this.logger.info({ step: "finish" });
+    return reduceAsyncSeq(
+      this.config.teams,
+      async (team) => await this.#processTeam(team)
+    ).then(() => this.logger.info({ step: "finish" }));
   }
 
   async #processTeam(teamSection) {
     const [org, team_slug] = teamSection.name.split("/");
 
-    return teamSection.repositories.map(async ({ name, permission }) => {
-      this.logger.info({ step: "repo-info" });
-      const repo = await this.#getRepositoryByNameAndOwner(name, org);
+    return await reduceAsyncSeq(
+      teamSection.repositories,
+      async ({ name, permission }) => {
+        this.logger.info({ step: "repo-info" });
+        const repo = await this.#getRepositoryByNameAndOwner(name, org);
 
-      this.logger.info({ step: "team-info" });
-      const team = await this.#getTeamByOrgAndSlugName(org, team_slug);
+        this.logger.info({ step: "team-info" });
+        const team = await this.#getTeamByOrgAndSlugName(org, team_slug);
 
-      this.logger.info({ step: "repo-update" });
-      return await this.#updateRepoPermissions({
-        repo,
-        team,
-        permission,
-      });
-    });
+        this.logger.info({ step: "repo-update" });
+        return await this.#updateRepoPermissions({
+          repo,
+          team,
+          permission,
+        });
+      }
+    );
   }
 
   /**
