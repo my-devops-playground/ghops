@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import GhopsAction from "./ops.js";
 import { ConnectionBuilder } from "@my-devops-playground/ghops-core";
 import { program } from "commander";
