@@ -5,7 +5,10 @@ import { logger as coreLogger } from "./logger.js";
  * the operation can eventually execute that plan
  */
 class Op {
-  constructor(action) {
+  constructor(connection, action) {
+    this.connection = connection;
+    this.http = connection.http;
+    this.config = connection.config;
     this.logger = coreLogger.group({ action: action });
   }
 

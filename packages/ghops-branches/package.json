@@ -1,6 +1,6 @@
 {
   "name": "@my-devops-playground/ghops-branches",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": false,
   "type": "module",
   "main": "index.js",
@@ -8,6 +8,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@my-devops-playground/ghops-core": "1.0.2"
+    "@my-devops-playground/ghops-core": "1.0.3"
   }
 }

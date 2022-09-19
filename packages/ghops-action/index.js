@@ -1,17 +1,19 @@
-import { Op } from "@my-devops-playground/ghops-core";
-import { OPERATIONS as BranchesOps } from "@my-devops-playground/ghops-branches";
-import { OPERATIONS as MembershipOps } from "@my-devops-playground/ghops-memberships";
+import GhopsAction from "./ops.js";
+import { ConnectionBuilder } from "@my-devops-playground/ghops-core";
+import { program } from "commander";
 
-const OPERATIONS = [...MembershipOps, ...BranchesOps];
+const options = program
+  .name("ghops")
+  .description("Executes operations declared in ghops config file")
+  .usage("-t <token> -c <config>")
+  .requiredOption("-t --token <token>", "Github Token")
+  .requiredOption("-c --config <config>", "path to the configuration file")
+  .parse()
+  .opts();
 
-export default class GhopsAction extends Op {
-  constructor() {
-    super("ghops/all");
-  }
+const connection = new ConnectionBuilder()
+  .setConfigPath(options.config)
+  .setToken(options.token)
+  .build();
 
-  execute() {
-    OPERATIONS.map((OperationClass) => new OperationClass()).forEach((op) =>
-      op.execute()
-    );
-  }
-}
+new GhopsAction(connection).execute();
