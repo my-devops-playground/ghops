@@ -11,10 +11,14 @@ export default class BranchProtectionOp extends Op {
   }
 
   async execute() {
-    return reduceAsyncSeq(
+    this.logger.info({ step: "start" });
+
+    await reduceAsyncSeq(
       this.config.repositories,
       async (repository) => await this.#processRepository(repository)
-    ).then(() => this.logger.info({ step: "finish" }));
+    );
+
+    this.logger.info({ step: "finish" });
   }
 
   async #processRepository(repository) {

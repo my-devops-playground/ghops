@@ -11,10 +11,14 @@ export default class AddRepositoryToTeamOp extends Op {
   }
 
   async execute() {
-    return reduceAsyncSeq(
+    this.logger.info({ step: "start" });
+
+    await reduceAsyncSeq(
       this.config.teams,
       async (team) => await this.#processTeam(team)
-    ).then(() => this.logger.info({ step: "finish" }));
+    );
+
+    this.logger.info({ step: "finish" });
   }
 
   async #processTeam(teamSection) {
@@ -23,13 +27,13 @@ export default class AddRepositoryToTeamOp extends Op {
     return await reduceAsyncSeq(
       teamSection.repositories,
       async ({ name, permission }) => {
-        this.logger.info({ step: "repo-info" });
+        this.logger.info({ step: "repo-info", repo: name });
         const repo = await this.#getRepositoryByNameAndOwner(name, org);
 
-        this.logger.info({ step: "team-info" });
+        this.logger.info({ step: "team-info", repo: name, team: team_slug });
         const team = await this.#getTeamByOrgAndSlugName(org, team_slug);
 
-        this.logger.info({ step: "repo-update" });
+        this.logger.info({ step: "repo-update", repo: name, team: team_slug });
         return await this.#updateRepoPermissions({
           repo,
           team,
