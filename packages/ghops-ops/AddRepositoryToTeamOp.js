@@ -1,11 +1,12 @@
-import { Op, reduceAsyncSeq } from "@my-devops-playground/ghops-core";
+import Operation from "./Operation.js";
+import { reduceAsyncSeq } from "@my-devops-playground/ghops-core";
 
 /**
  * Operation that adds a repository to a team
  *
  * @see https://docs.github.com/en/rest/teams/teams#add-or-update-team-repository-permissions
  */
-export default class AddRepositoryToTeamOp extends Op {
+export default class AddRepositoryToTeamOp extends Operation {
   constructor(connection) {
     super(connection, "memberships/team/repository/add");
   }

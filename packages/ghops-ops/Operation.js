@@ -1,10 +1,10 @@
-import { logger as coreLogger } from "./logger.js";
+import { logger as coreLogger } from "@my-devops-playground/ghops-core";
 
 /**
  * Represents an operation. And operation has a plan and
  * the operation can eventually execute that plan
  */
-class Op {
+export default class Operation {
   constructor(connection, ns) {
     this.connection = connection;
     this.http = connection.http;
@@ -34,5 +34,3 @@ class Op {
     throw new Error("operation not supported!");
   }
 }
-
-export { Op };

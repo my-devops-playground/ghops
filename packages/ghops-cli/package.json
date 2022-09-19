@@ -1,5 +1,5 @@
 {
-  "name": "@my-devops-playground/ghops-action",
+  "name": "@my-devops-playground/ghops-cli",
   "version": "1.0.4",
   "private": false,
   "type": "module",
@@ -8,8 +8,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@my-devops-playground/ghops-branches": "1.0.4",
-    "@my-devops-playground/ghops-memberships": "1.0.4",
+    "@my-devops-playground/ghops-ops": "1.0.4",
     "commander": "^9.4.0"
   },
   "bin": {

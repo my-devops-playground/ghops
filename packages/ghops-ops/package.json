@@ -1,0 +1,17 @@
+{
+  "name": "@my-devops-playground/ghops-ops",
+  "version": "1.0.4",
+  "private": false,
+  "type": "module",
+  "main": "index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@my-devops-playground/ghops-core": "1.0.4",
+    "commander": "^9.4.0"
+  },
+  "bin": {
+    "ghops": "./index.js"
+  }
+}

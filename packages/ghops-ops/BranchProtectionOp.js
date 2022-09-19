@@ -1,11 +1,12 @@
-import { Op, reduceAsyncSeq } from "@my-devops-playground/ghops-core";
+import Operation from "./Operation.js";
+import { reduceAsyncSeq } from "@my-devops-playground/ghops-core";
 
 /**
  * Used to update branch protection.
  *
  * @see https://docs.github.com/en/rest/branches/branch-protection#update-branch-protection
  */
-export default class BranchProtectionOp extends Op {
+export default class BranchProtectionOp extends Operation {
   constructor(connection) {
     super(connection, "branches/protection");
   }
