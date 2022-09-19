@@ -11,3 +11,5 @@ jobs:
         with:
           ghops-token: ${{ secrets.GH_TOKEN }}
           ghops-config: "ghops.json"
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
