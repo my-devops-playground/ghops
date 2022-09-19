@@ -11,7 +11,7 @@ jobs:
           node-version: 16.17
           registry-url: https://npm.pkg.github.com/
           scope: "@my-devops-playground"
-      - run: "npm i -g @my-devops-playground/ghops-action@1.0.4 && ghops --help"
+      - run: "sudo npm i -g @my-devops-playground/ghops-action@1.0.4"
         env:
-          NPM_CONFIG_PREFIX: "~/.npm-global"
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+      - run: "ghops --help"
