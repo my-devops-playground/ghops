@@ -9,5 +9,5 @@ jobs:
       - uses: actions/checkout@v2
       - uses: my-devops-playground/ghops-action@v1.0.1
         with:
-          ghops-token: ${{ secrets.GITHUB_TOKEN }}
+          ghops-token: ${{ secrets.GH_TOKEN }}
           ghops-config: "ghops.json"
