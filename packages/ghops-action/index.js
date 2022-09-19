@@ -15,3 +15,5 @@ export default class GhopsAction extends Op {
     );
   }
 }
+
+new GhopsAction().execute();
