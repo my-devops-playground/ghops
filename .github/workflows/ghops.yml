@@ -6,11 +6,13 @@ jobs:
   apply:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 16.17
           registry-url: https://npm.pkg.github.com/
           scope: "@my-devops-playground"
+      # https://github.com/actions/runner-images/issues/599
       - run: "npm i @my-devops-playground/ghops-action@1.0.4"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
